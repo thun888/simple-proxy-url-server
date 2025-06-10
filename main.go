@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"path"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,11 +30,8 @@ func main() {
 
 	// 代理路由
 	r.Any("/proxy/*url", func(c *gin.Context) {
-		// 获取URL并补充冒号
+		// 获取URL
 		targetURL := c.Param("url")[1:] // 移除开头的斜杠
-		if strings.HasPrefix(targetURL, "https") {
-			targetURL = strings.Replace(targetURL, "https", "https:", 1)
-		}
 
 		// 创建代理请求
 		req, err := http.NewRequest(c.Request.Method, targetURL, c.Request.Body)

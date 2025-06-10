@@ -76,9 +76,7 @@
             event.preventDefault();
             const url = document.getElementById('urlInput').value;
             if (url) {
-                // 移除 URL 中的冒号
-                const processedUrl = url.replace('https:', 'https');
-                window.location.href = '/proxy/' + encodeURIComponent(processedUrl);
+                window.location.href = '/proxy/' + encodeURIComponent(url);
             }
         }
     </script>
