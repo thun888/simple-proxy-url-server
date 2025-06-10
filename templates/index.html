@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理下载</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        input[type="url"] {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>代理下载</h1>
+        <form id="proxyForm" onsubmit="handleSubmit(event)">
+            <div class="input-group">
+                <input type="url" id="urlInput" placeholder="请输入 URL（例如：https://example.com）" required>
+                <button type="submit">转换</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const url = document.getElementById('urlInput').value;
+            if (url) {
+                // 移除 URL 中的冒号
+                const processedUrl = url.replace('https:', 'https');
+                window.location.href = '/proxy/' + encodeURIComponent(processedUrl);
+            }
+        }
+    </script>
+</body>
+</html> 
